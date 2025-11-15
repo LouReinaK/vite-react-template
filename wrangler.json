@@ -1,15 +1,12 @@
-{
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "vite-react-template",
-  "main": "./src/worker/index.ts",
-  "compatibility_date": "2025-10-08",
-  "compatibility_flags": ["nodejs_compat"],
-  "observability": {
-    "enabled": true
-  },
-  "upload_source_maps": true,
-  "assets": {
-    "directory": "./dist/client",
-    "not_found_handling": "single-page-application"
-  }
-}
+name = "websocket-worker"
+main = "./src/worker/worker.js"
+compatibility_date = "2024-01-01"
+
+[durable_objects]
+bindings = [
+  { name = "ROOM", class_name = "Room" }
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["Room"]
